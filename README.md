@@ -23,10 +23,6 @@
 - **Backend**: Deploy the Django application to PythonAnywhere.
 - **Database**: Set up a MySQL database on PythonAnywhere and update the database configuration in `backend/settings.py`.
 
-## Contributing
 
-Contributions are welcome! Feel free to open issues or pull requests.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
