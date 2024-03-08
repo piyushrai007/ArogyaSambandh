@@ -1,0 +1,13 @@
+.blog-post {
+    width: 300px; /* Adjust the width as needed */
+    background-color: #fff; /* Set the background color */
+}
+
+.blog-image {
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    transition: transform 0.2s ease; /* Add transition for smooth hover effect */
+}
+
+.blog-image:hover {
+    transform: scale(1.05); /* Scale up the image slightly on hover */
+}
