@@ -310,6 +310,8 @@ function PatientDashboard() {
                             </div>
                         </dl>
                     </div>
+                    <DoctorList />
+                    
                 </div>
             )}
             <div className="mt-6">
