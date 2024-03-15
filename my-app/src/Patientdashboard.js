@@ -158,7 +158,7 @@ function DoctorList() {
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-4">Doctors</h2>
-            {doctors.map((doctor) => (
+            {doctors && doctors.map((doctor) => (
                 <div key={doctor.id} className="flex items-center space-x-4 p-4 bg-white shadow rounded-lg">
                     <div>
                         <ProfilePicture profilePicture={doctor.profile_picture} className="h-20 w-20 rounded-full" />
