@@ -121,7 +121,7 @@ function DoctorList() {
     const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
     useEffect(() => {
-        axios.get(' piyushrai.pythonanywhere.com/api/doctors/', {
+        axios.get('piyushrai.pythonanywhere.com/api/doctors/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
