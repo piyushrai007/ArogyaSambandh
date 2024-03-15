@@ -4,8 +4,8 @@ function Username({ username }) {
     return <p>{username}</p>;
 }
 
-function ProfilePicture({ profilePicture }) {
-    return <img src={profilePicture} alt="Profile" />;
+function ProfilePicture({ profilePicture, className }) {
+    return <img src={profilePicture} alt="Profile" className={className} />;
 }
 
 function Address({ addressLine1, city, state, pincode }) {
