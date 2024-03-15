@@ -36,7 +36,7 @@ function AppointmentForm({ doctorId, doctorName, onAppointmentBooked }) {
         // Format the end time as HH:mm
         const endTime = `${adjustedEndHours < 10 ? '0' : ''}${adjustedEndHours}:${adjustedEndMinutes < 10 ? '0' : ''}${adjustedEndMinutes}`;
     
-        axios.post('piyushrai.pythonanywhere.com/api/appointments/', {
+        axios.post(' piyushrai.pythonanywhere.com/api/appointments/', {
             patient: userid,
             doctor: doctorId,
             speciality: specialty,
@@ -191,31 +191,6 @@ function DoctorList() {
     );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function ProfilePicture({ profilePicture, className }) {
-    return (
-        <img 
-            src={profilePicture || 'https://via.placeholder.com/150'} 
-            alt="Profile" 
-            className={`${className} object-cover`}
-        />
-    );
-}
-
 function PatientDashboard() {
     const [user, setUser] = useState(null);
     const [blogPosts, setBlogPosts] = useState([]);
@@ -223,7 +198,7 @@ function PatientDashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://piyushrai.pythonanywhere.com/api/user/', {
+        axios.get('piyushrai.pythonanywhere.com/api/user/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
@@ -235,7 +210,7 @@ function PatientDashboard() {
             console.log(error);
         });
 
-        axios.get('https://piyushrai.pythonanywhere.com/api/blogpost/', {
+        axios.get('piyushrai.pythonanywhere.com/api/blogpost/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
@@ -311,7 +286,7 @@ function PatientDashboard() {
                         </dl>
                     </div>
                     <DoctorList />
-                    
+
                 </div>
             )}
             <div className="mt-6">
@@ -350,4 +325,6 @@ function CategoryButton({ name, handleClick, isSelected }) {
 }
 
 export default PatientDashboard;
+
+
 
