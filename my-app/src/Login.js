@@ -20,6 +20,8 @@ function Login() {
             if (response.status === 200) {
                 localStorage.setItem('access', response.data.access);
                 localStorage.setItem('refresh', response.data.refresh);
+                localStorage.setItem('user_type', response.data.user_type);
+                localStorage.setItem('userid', response.data.user_id);
                 if (response.data.user_type === 'doctor') {
                     navigate("/doctor-dashboard");
                 } else if (response.data.user_type === 'patient') {
