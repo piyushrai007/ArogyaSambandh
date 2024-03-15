@@ -210,7 +210,7 @@ function PatientDashboard() {
             console.log(error);
         });
 
-        axios.get('piyushrai.pythonanywhere.com/api/blogpost/', {
+        axios.get('https://piyushrai.pythonanywhere.com/api/blogpost/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
