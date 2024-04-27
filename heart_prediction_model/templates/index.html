@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiovascular Disease Prediction</title>
+</head>
+<body>
+    <h1>Cardiovascular Disease Prediction</h1>
+    <form id="predictionForm">
+        <label for="age">Age (in days):</label>
+        <input type="number" id="age" name="age" required><br><br>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select><br><br>
+        <label for="height">Height (in cm):</label>
+        <input type="number" id="height" name="height" required><br><br>
+        <label for="weight">Weight (in kg):</label>
+        <input type="number" id="weight" name="weight" required><br><br>
+        <label for="ap_hi">Systolic blood pressure (mmHg):</label>
+        <input type="number" id="ap_hi" name="ap_hi" required><br><br>
+        <label for="ap_lo">Diastolic blood pressure (mmHg):</label>
+        <input type="number" id="ap_lo" name="ap_lo" required><br><br>
+        <label for="cholesterol">Cholesterol:</label>
+        <input type="number" id="cholesterol" name="cholesterol" required><br><br>
+        <label for="gluc">Glucose:</label>
+        <input type="number" id="gluc" name="gluc" required><br><br>
+        <label for="smoke">Smoking:</label>
+        <select id="smoke" name="smoke" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br><br>
+        <label for="alco">Alcohol intake:</label>
+        <select id="alco" name="alco" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br><br>
+        <label for="active">Physical activity:</label>
+        <select id="active" name="active" required>
+            <option value="1">Active</option>
+            <option value="0">Not active</option>
+        </select><br><br>
+        <button type="submit">Predict</button>
+    </form>
+    <div id="predictionResult"></div>
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/predict', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("predictionResult").innerHTML = "Prediction: " + data.prediction;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
