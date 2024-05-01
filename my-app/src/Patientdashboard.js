@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Username, Address, ProfilePicture } from './UserComponents';
 import BlogPost from './BlogPost';
 import Modal from 'react-modal';
+import PredictionModel from './pred';
+
 function AppointmentForm({ doctorId, doctorName, onAppointmentBooked }) {
     const [specialty, setSpecialty] = useState('');
     const [date, setDate] = useState('');
@@ -57,8 +59,7 @@ function AppointmentForm({ doctorId, doctorName, onAppointmentBooked }) {
             console.log(error);
         });
     };
-    
-    
+
     return (
         <div className="bg-white p-6 rounded shadow-md">
             <h2 className="text-2xl font-bold mb-4">Book Appointment</h2>
@@ -90,24 +91,22 @@ function AppointmentForm({ doctorId, doctorName, onAppointmentBooked }) {
             >
                 Confirm
             </button>
+            <Modal
+                isOpen={isConfirmationModalOpen}
+                onRequestClose={() => setIsConfirmationModalOpen(false)}
+            >
+                <ConfirmationScreen doctorName={doctorName} />
+            </Modal>
         </div>
     );
 }
 
-function ConfirmationScreen({ appointment, doctorName, onRequestClose }) {
-    if (!appointment) {
-        return <div>Loading...</div>;
-    }
-
+function ConfirmationScreen({ doctorName }) {
     return (
         <div>
-            <h2>Appointment Details</h2>
-            <p>Doctor's Name: {doctorName}</p>
-            <p>Specialty: {appointment.speciality}</p>
-            <p>Appointment Date: {appointment.date_of_appointment}</p>
-            <p>Appointment Start Time: {appointment.start_time}</p>
-            <p>Appointment End Time: {appointment.end_time}</p>
-            <button onClick={onRequestClose}>Close</button>
+            <h2>Appointment Booked</h2>
+            <p>{doctorName}</p>
+            <button onClick={() => window.location.reload()}>Close</button>
         </div>
     );
 }
@@ -118,7 +117,6 @@ function DoctorList() {
     const [selectedDoctorId, setSelectedDoctorId] = useState(null);
     const [appointment, setAppointment] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
     useEffect(() => {
         axios.get('https://piyushrai.pythonanywhere.com/api/doctors/', {
@@ -134,26 +132,17 @@ function DoctorList() {
         });
     }, []);
 
-    const handleBookAppointment = (doctorId) => {
+    const handleBookAppointment = (doctorId, doctorName) => {
         setSelectedDoctorId(doctorId);
+        setBookedDoctorName(doctorName);
         setIsModalOpen(true);
     };
 
     const handleAppointmentBooked = (appointment, doctorName) => {
         setAppointment(appointment);
         setBookedDoctorName(doctorName);
-        setSelectedDoctorId(null);
         setIsModalOpen(false);
-        setIsConfirmationModalOpen(true);
     };
-
-    const closeConfirmationModal = () => {
-        setIsConfirmationModalOpen(false);
-    };
-
-    if (appointment) {
-        return <ConfirmationScreen appointment={appointment} doctorName={bookedDoctorName} onRequestClose={closeConfirmationModal} />;
-    }
 
     return (
         <div className="p-6">
@@ -168,7 +157,7 @@ function DoctorList() {
                         <p className="text-gray-500">{doctor.specialization}</p>
                         <button 
                             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded shadow" 
-                            onClick={() => handleBookAppointment(doctor.id)}
+                            onClick={() => handleBookAppointment(doctor.id, doctor.username)}
                         >
                             Book Appointment
                         </button>
@@ -177,13 +166,7 @@ function DoctorList() {
                         isOpen={selectedDoctorId === doctor.id && isModalOpen}
                         onRequestClose={() => setIsModalOpen(false)}
                     >
-                        <AppointmentForm doctorId={doctor.id} doctorName={doctor.username} onAppointmentBooked={handleAppointmentBooked} />
-                    </Modal>
-                    <Modal
-                        isOpen={isConfirmationModalOpen}
-                        onRequestClose={closeConfirmationModal}
-                    >
-                        <ConfirmationScreen appointment={appointment} doctorName={bookedDoctorName} onRequestClose={closeConfirmationModal} />
+                        <AppointmentForm doctorId={doctor.id} doctorName={bookedDoctorName} onAppointmentBooked={handleAppointmentBooked} />
                     </Modal>
                 </div>
             ))}
@@ -226,8 +209,6 @@ function PatientDashboard() {
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
     };
-
-    const filteredPosts = selectedCategory === 'all' ? blogPosts : blogPosts.filter(post => post.category === selectedCategory);
 
     function handleLogout() {
         localStorage.removeItem('access');
@@ -286,7 +267,7 @@ function PatientDashboard() {
                         </dl>
                     </div>
                     <DoctorList />
-
+                    <PredictionModel/>
                 </div>
             )}
             <div className="mt-6">
@@ -302,7 +283,7 @@ function PatientDashboard() {
                     </div>
                 </div>
                 <div className="flex flex-wrap">
-                    {filteredPosts.map((post) => (
+                    {blogPosts.map((post) => (
                         <BlogPost key={post.id} post={post} />
                     ))}
                 </div>
@@ -325,6 +306,4 @@ function CategoryButton({ name, handleClick, isSelected }) {
 }
 
 export default PatientDashboard;
-
-
 
