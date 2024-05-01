@@ -75,4 +75,5 @@ def predict():
         return jsonify({'error': 'Prediction failed'})
 
 
+if __name__ == '__main__':
     app.run(debug=True)
