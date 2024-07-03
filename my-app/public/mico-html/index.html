@@ -298,9 +298,52 @@
         </div>
     </div>
 </section>>
-
-
-  <!-- end book section -->
+<section id="book_section" class="book_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form id="kidneyPredictionForm">
+          <h4>
+            KIDNEY STONE <span>PREDICTION</span>
+          </h4>
+          <div class="form-row ">
+            <div class="form-group col-lg-4">
+              <label for="gravity">Specific Gravity:</label>
+              <input type="number" step="0.001" class="form-control" id="gravity" name="gravity" required>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="ph">pH:</label>
+              <input type="number" step="0.01" class="form-control" id="ph" name="ph" required>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="osmolality">Osmolality (mOsm/kg):</label>
+              <input type="number" class="form-control" id="osmolality" name="osmolality" required>
+            </div>
+          </div>
+          <div class="form-row ">
+            <div class="form-group col-lg-4">
+              <label for="conductivity">Conductivity:</label>
+              <input type="number" class="form-control" id="conductivity" name="conductivity" required>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="urea">Urea (mg/dL):</label>
+              <input type="number" class="form-control" id="urea" name="urea" required>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="calcium">Calcium (mg/dL):</label>
+              <input type="number" class="form-control" id="calcium" name="calcium" required>
+            </div>
+          </div>
+          <div class="btn-box"></div>
+            <button type="submit" class="btn">Predict</button>
+          </div>
+        </form>
+        <div id="kidneyPredictionResult"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end book section -->
 
 
   <!-- about section -->
@@ -796,6 +839,69 @@
 
 
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("kidneyPredictionForm");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Collect form data
+        const formData = {
+            gravity: document.getElementById("gravity").value,
+            ph: document.getElementById("ph").value,
+            osmolality: document.getElementById("osmolality").value,
+            conductivity: document.getElementById("conductivity").value,
+            urea: document.getElementById("urea").value,
+            calcium: document.getElementById("calcium").value
+            
+        };
+
+        // Convert form data to the required format for the API
+        const payload = {
+            input_data: [{
+                fields: ["gravity", "ph", "osmolality","conductivity", "urea", "calcium"],
+                values: [[formData.gravity, formData.ph, formData.osmolality,formData.conductivity , formData.urea, formData.calcium]]
+            }]
+        };
+
+        // Get the token and then make the API call
+        getToken(function() {
+            console.error("Error getting token");
+        }, function() {
+            const tokenResponse = JSON.parse(this.responseText);
+            const scoring_url = "https://private.us-south.ml.cloud.ibm.com/ml/v4/deployments/your_deployment_id/predictions?version=2021-05-01";
+            apiPost(scoring_url, tokenResponse.access_token, JSON.stringify(payload), function() {
+                const predictionResult = JSON.parse(this.responseText);
+                console.log("Prediction result:", predictionResult);
+                // Display the result
+                document.getElementById("predictionResult").innerText = JSON.stringify(predictionResult, null, 2);
+            }, function(error) {
+                console.error("API call error:", error);
+            });
+        });
+    });
+});
+
+function getToken(errorCallback, loadCallback) {
+    const req = new XMLHttpRequest();
+    req.addEventListener("load", loadCallback);
+    req.addEventListener("error", errorCallback);
+    req.open("POST", "https://iam.cloud.ibm.com/identity/token");
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    req.setRequestHeader("Accept", "application/json");
+    req.send("grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=gftM94quHbBOHSKb2TJKADQl1h9-p0nqJ4SeMyxHSDxn");
+  }
+
+function apiPost(scoring_url, token, payload, loadCallback, errorCallback) {
+    const oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", loadCallback);
+    oReq.addEventListener("error", errorCallback);
+    oReq.open("POST", scoring_url);
+    oReq.setRequestHeader("Accept", "application/json");
+    oReq.setRequestHeader("Authorization", "Bearer " + token);
+    oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    oReq.send(payload);
+}
     document.getElementById("predictionForm").addEventListener("submit", function(event) {
         event.preventDefault();
         const formData = new FormData(this);
