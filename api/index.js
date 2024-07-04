@@ -1,7 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const cors = require('cors');  // Importing the CORS package
+import express from "express";
+import bodyParser from 'body-parser';
+import { XMLHttpRequest } from "xmlhttprequest";
+import cors from 'cors';
+
+// Rest of your code remains unchanged
+ // Importing the CORS package
 
 const app = express();
 const PORT = process.env.PORT || 3001;
