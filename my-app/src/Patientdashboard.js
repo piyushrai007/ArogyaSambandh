@@ -38,7 +38,7 @@ function AppointmentForm({ doctorId, doctorName, onAppointmentBooked }) {
         // Format the end time as HH:mm
         const endTime = `${adjustedEndHours < 10 ? '0' : ''}${adjustedEndHours}:${adjustedEndMinutes < 10 ? '0' : ''}${adjustedEndMinutes}`;
     
-        axios.post('https://piyushrai.pythonanywhere.com/api/appointments/', {
+        axios.post('https://piyushraivds45.pythonanywhere.com/api/appointments/', {
             patient: userid,
             doctor: doctorId,
             speciality: specialty,
@@ -119,7 +119,7 @@ function DoctorList() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        axios.get('https://piyushrai.pythonanywhere.com/api/doctors/', {
+        axios.get('https://piyushraivds45.pythonanywhere.com/api/doctors/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
@@ -181,7 +181,7 @@ function PatientDashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://piyushrai.pythonanywhere.com/api/user/', {
+        axios.get('https://piyushraivds45.pythonanywhere.com/api/user/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
@@ -193,7 +193,7 @@ function PatientDashboard() {
             console.log(error);
         });
 
-        axios.get('https://piyushrai.pythonanywhere.com/api/blogpost/', {
+        axios.get('https://piyushraivds45.pythonanywhere.com/api/blogpost/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }

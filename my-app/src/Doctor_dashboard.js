@@ -11,7 +11,7 @@ function DoctorDashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://piyushrai.pythonanywhere.com/api/user/', {
+        axios.get('https://piyushraivds45.pythonanywhere.com/api/user/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
@@ -23,7 +23,7 @@ function DoctorDashboard() {
             console.error(error);
         });
 
-        axios.get('https://piyushrai.pythonanywhere.com/api/blogpost/', {
+        axios.get('https://piyushraivds45.pythonanywhere.com/api/blogpost/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }

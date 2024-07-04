@@ -37,7 +37,7 @@ function Registration() {
             formData.append('profile_picture', profilePicture, profilePicture.name);
         }
 
-        axios.post('https://piyushrai.pythonanywhere.com/api/register/', formData, {
+        axios.post('https://piyushraivds45.pythonanywhere.com/api/register/', formData, {
             headers: {
                 'content-type': 'multipart/form-data'
             }

@@ -27,7 +27,7 @@ function BlogPostForm() {
             formData.append('content', content);
             formData.append('draft', draft);
 
-            const response = await axios.post('https://piyushrai.pythonanywhere.com/api/blogpost/new/', formData, {
+            const response = await axios.post('https://piyushraivds45.pythonanywhere.com/api/blogpost/new/', formData, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access')}`,
                     'Content-Type': 'multipart/form-data'
