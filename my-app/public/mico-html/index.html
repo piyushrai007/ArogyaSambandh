@@ -300,45 +300,232 @@
 </section>>
 <section id="book_section" class="book_section layout_padding">
   <div class="container">
+      <div class="row">
+          <div class="col">
+              <form id="kidneyPredictionForm">
+                  <h4>KIDNEY STONE <span>PREDICTION</span></h4>
+                  <div class="form-row">
+                      <div class="form-group col-lg-4">
+                          <label for="gravity">Specific Gravity:</label>
+                          <input type="number" step="0.001" class="form-control" id="gravity" name="gravity" required>
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label for="ph">pH:</label>
+                          <input type="number" step="0.01" class="form-control" id="ph" name="ph" required>
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label for="osmolality">Osmolality (mOsm/kg):</label>
+                          <input type="number" class="form-control" id="osmolality" name="osmolality" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-lg-4">
+                          <label for="conductivity">Conductivity:</label>
+                          <input type="number" class="form-control" id="conductivity" name="conductivity" required>
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label for="urea">Urea (mg/dL):</label>
+                          <input type="number" class="form-control" id="urea" name="urea" required>
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label for="calcium">Calcium (mg/dL):</label>
+                          <input type="number" class="form-control" id="calcium" name="calcium" required>
+                      </div>
+                  </div>
+                  <div class="btn-box">
+                      <button type="submit" class="btn">Predict</button>
+                  </div>
+              </form>
+              <div id="kidneyPredictionResult"></div>
+          </div>
+      </div>
+  </div>
+</section>
+<section id="diabetes_section" class="book_section layout_padding">
+  <div class="container">
     <div class="row">
       <div class="col">
-        <form id="kidneyPredictionForm">
-          <h4>
-            KIDNEY STONE <span>PREDICTION</span>
-          </h4>
-          <div class="form-row ">
+        <form id="diabetesPredictionForm">
+          <h4>DIABETES <span>PREDICTION</span></h4>
+          <div class="form-row">
             <div class="form-group col-lg-4">
-              <label for="gravity">Specific Gravity:</label>
-              <input type="number" step="0.001" class="form-control" id="gravity" name="gravity" required>
+              <label for="pregnancies">Pregnancies:</label>
+              <input type="number" class="form-control" id="pregnancies" name="pregnancies" required>
             </div>
             <div class="form-group col-lg-4">
-              <label for="ph">pH:</label>
-              <input type="number" step="0.01" class="form-control" id="ph" name="ph" required>
+              <label for="glucose">Glucose:</label>
+              <input type="number" class="form-control" id="glucose" name="glucose" required>
             </div>
             <div class="form-group col-lg-4">
-              <label for="osmolality">Osmolality (mOsm/kg):</label>
-              <input type="number" class="form-control" id="osmolality" name="osmolality" required>
+              <label for="bloodPressure">Blood Pressure:</label>
+              <input type="number" class="form-control" id="bloodPressure" name="bloodPressure" required>
             </div>
           </div>
-          <div class="form-row ">
+          <div class="form-row">
             <div class="form-group col-lg-4">
-              <label for="conductivity">Conductivity:</label>
-              <input type="number" class="form-control" id="conductivity" name="conductivity" required>
+              <label for="skinThickness">Skin Thickness:</label>
+              <input type="number" class="form-control" id="skinThickness" name="skinThickness" required>
             </div>
             <div class="form-group col-lg-4">
-              <label for="urea">Urea (mg/dL):</label>
-              <input type="number" class="form-control" id="urea" name="urea" required>
+              <label for="insulin">Insulin:</label>
+              <input type="number" class="form-control" id="insulin" name="insulin" required>
             </div>
             <div class="form-group col-lg-4">
-              <label for="calcium">Calcium (mg/dL):</label>
-              <input type="number" class="form-control" id="calcium" name="calcium" required>
+              <label for="bmi">BMI:</label>
+              <input type="number" step="0.01" class="form-control" id="bmi" name="bmi" required>
             </div>
           </div>
-          <div class="btn-box"></div>
+          <div class="form-row">
+            <div class="form-group col-lg-4">
+              <label for="diabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+              <input type="number" step="0.01" class="form-control" id="diabetesPedigreeFunction" name="diabetesPedigreeFunction" required>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="age">Age:</label>
+              <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+          </div>
+          <div class="btn-box">
             <button type="submit" class="btn">Predict</button>
           </div>
         </form>
-        <div id="kidneyPredictionResult"></div>
+        <div id="diabetesPredictionResult"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="cancer_prediction_section" class="book_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form id="cancerPredictionForm">
+          <!-- Hidden Patient Id Field -->
+          <input type="hidden" id="patientId" name="patientId" value="123456">
+
+          <h4>CANCER PREDICTION</h4>
+
+          <!-- Form Fields -->
+          <div class="form-row">
+            <div class="form-group col-lg-3">
+              <label for="age">Age:</label>
+              <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="gender">Gender:</label>
+              <select class="form-control" id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="airPollution">Air Pollution:</label>
+              <input type="number" class="form-control" id="airPollution" name="airPollution" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="alcoholUse">Alcohol Use:</label>
+              <input type="number" class="form-control" id="alcoholUse" name="alcoholUse" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-lg-3">
+              <label for="dustAllergy">Dust Allergy:</label>
+              <input type="number" class="form-control" id="dustAllergy" name="dustAllergy" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="occupationalHazards">Occupational Hazards:</label>
+              <input type="number" class="form-control" id="occupationalHazards" name="occupationalHazards" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="geneticRisk">Genetic Risk:</label>
+              <input type="number" class="form-control" id="geneticRisk" name="geneticRisk" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="chronicLungDisease">Chronic Lung Disease:</label>
+              <input type="number" class="form-control" id="chronicLungDisease" name="chronicLungDisease" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-lg-3">
+              <label for="balancedDiet">Balanced Diet:</label>
+              <input type="number" class="form-control" id="balancedDiet" name="balancedDiet" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="obesity">Obesity:</label>
+              <input type="number" class="form-control" id="obesity" name="obesity" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="smoking">Smoking:</label>
+              <input type="number" class="form-control" id="smoking" name="smoking" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="passiveSmoker">Passive Smoker:</label>
+              <input type="number" class="form-control" id="passiveSmoker" name="passiveSmoker" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-lg-3">
+              <label for="chestPain">Chest Pain:</label>
+              <input type="number" class="form-control" id="chestPain" name="chestPain" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="coughingOfBlood">Coughing of Blood:</label>
+              <input type="number" class="form-control" id="coughingOfBlood" name="coughingOfBlood" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="fatigue">Fatigue:</label>
+              <input type="number" class="form-control" id="fatigue" name="fatigue" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="weightLoss">Weight Loss:</label>
+              <input type="number" class="form-control" id="weightLoss" name="weightLoss" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-lg-3">
+              <label for="shortnessOfBreath">Shortness of Breath:</label>
+              <input type="number" class="form-control" id="shortnessOfBreath" name="shortnessOfBreath" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="wheezing">Wheezing:</label>
+              <input type="number" class="form-control" id="wheezing" name="wheezing" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="swallowingDifficulty">Swallowing Difficulty:</label>
+              <input type="number" class="form-control" id="swallowingDifficulty" name="swallowingDifficulty" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="clubbingOfFingerNails">Clubbing of Finger Nails:</label>
+              <input type="number" class="form-control" id="clubbingOfFingerNails" name="clubbingOfFingerNails" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-lg-3">
+              <label for="frequentCold">Frequent Cold:</label>
+              <input type="number" class="form-control" id="frequentCold" name="frequentCold" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="dryCough">Dry Cough:</label>
+              <input type="number" class="form-control" id="dryCough" name="dryCough" required>
+            </div>
+            <div class="form-group col-lg-3">
+              <label for="snoring">Snoring:</label>
+              <input type="number" class="form-control" id="snoring" name="snoring" required>
+            </div>
+            <!-- Add more fields as per your form structure -->
+          </div>
+
+          <!-- Submit Button -->
+          <div class="btn-box">
+            <button type="submit" class="btn btn-primary">Predict</button>
+          </div>
+        </form>
+        <!-- Container for Prediction Result -->
+        <div id="cancerPredictionResult"></div>
       </div>
     </div>
   </div>
@@ -839,69 +1026,138 @@
 
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("kidneyPredictionForm");
+    // kidneyPrediction.js
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Form submission handler
+    document.getElementById('kidneyPredictionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
         // Collect form data
-        const formData = {
-            gravity: document.getElementById("gravity").value,
-            ph: document.getElementById("ph").value,
-            osmolality: document.getElementById("osmolality").value,
-            conductivity: document.getElementById("conductivity").value,
-            urea: document.getElementById("urea").value,
-            calcium: document.getElementById("calcium").value
-            
-        };
+        const gravity = parseFloat(document.getElementById('gravity').value);
+        const ph = parseFloat(document.getElementById('ph').value);
+        const osmolality = parseFloat(document.getElementById('osmolality').value);
+        const conductivity = parseFloat(document.getElementById('conductivity').value);
+        const urea = parseFloat(document.getElementById('urea').value);
+        const calcium = parseFloat(document.getElementById('calcium').value);
 
-        // Convert form data to the required format for the API
+        // Create payload for API
         const payload = {
-            input_data: [{
-                fields: ["gravity", "ph", "osmolality","conductivity", "urea", "calcium"],
-                values: [[formData.gravity, formData.ph, formData.osmolality,formData.conductivity , formData.urea, formData.calcium]]
-            }]
+            input_data: [
+                {
+                    fields: ["gravity", "ph", "osmolality", "conductivity", "urea", "calcium"],
+                    values: [[gravity, ph, osmolality, conductivity, urea, calcium]]
+                }
+            ]
         };
 
-        // Get the token and then make the API call
-        getToken(function() {
-            console.error("Error getting token");
-        }, function() {
-            const tokenResponse = JSON.parse(this.responseText);
-            const scoring_url = "https://private.us-south.ml.cloud.ibm.com/ml/v4/deployments/your_deployment_id/predictions?version=2021-05-01";
-            apiPost(scoring_url, tokenResponse.access_token, JSON.stringify(payload), function() {
-                const predictionResult = JSON.parse(this.responseText);
-                console.log("Prediction result:", predictionResult);
-                // Display the result
-                document.getElementById("predictionResult").innerText = JSON.stringify(predictionResult, null, 2);
-            }, function(error) {
-                console.error("API call error:", error);
-            });
+        // Call the Express API
+        fetch('https://kp-opal.vercel.app/score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the result
+            const result = data.predictions[0].values[0][0];
+            if (result === 1) {
+              document.getElementById('kidneyPredictionResult').innerText = 'There is a high likelihood of kidney stone.';
+            } else if (result === 0) {
+              document.getElementById('kidneyPredictionResult').innerText = 'There is no significant indication of kidney stone.';
+            } else {
+              document.getElementById('kidneyPredictionResult').innerText = 'Error in prediction. Please try again.';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('kidneyPredictionResult').innerText = 'Error in prediction. Please try again.';
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Form submission handler
+    document.getElementById('cancerPredictionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Collect form data
+        const age = parseInt(document.getElementById('age').value);
+        const gender = document.getElementById('gender').value;
+        const airPollution = parseInt(document.getElementById('airPollution').value);
+        const alcoholUse = parseInt(document.getElementById('alcoholUse').value);
+        const dustAllergy = parseInt(document.getElementById('dustAllergy').value);
+        const occupationalHazards = parseInt(document.getElementById('occupationalHazards').value);
+        const geneticRisk = parseInt(document.getElementById('geneticRisk').value);
+        const chronicLungDisease = parseInt(document.getElementById('chronicLungDisease').value);
+        const balancedDiet = parseInt(document.getElementById('balancedDiet').value);
+        const obesity = parseInt(document.getElementById('obesity').value);
+        const smoking = parseInt(document.getElementById('smoking').value);
+        const passiveSmoker = parseInt(document.getElementById('passiveSmoker').value);
+        const chestPain = parseInt(document.getElementById('chestPain').value);
+        const coughingOfBlood = parseInt(document.getElementById('coughingOfBlood').value);
+        const fatigue = parseInt(document.getElementById('fatigue').value);
+        const weightLoss = parseInt(document.getElementById('weightLoss').value);
+        const shortnessOfBreath = parseInt(document.getElementById('shortnessOfBreath').value);
+        const wheezing = parseInt(document.getElementById('wheezing').value);
+        const swallowingDifficulty = parseInt(document.getElementById('swallowingDifficulty').value);
+        const clubbingOfFingerNails = parseInt(document.getElementById('clubbingOfFingerNails').value);
+        const frequentCold = parseInt(document.getElementById('frequentCold').value);
+        const dryCough = parseInt(document.getElementById('dryCough').value);
+        const snoring = parseInt(document.getElementById('snoring').value);
+
+        // Create payload for API
+        const payload = {
+            input_data: [
+                {
+                    fields: [ "Patient Id","age", "gender", "airPollution", "alcoholUse", "dustAllergy", "occupationalHazards", 
+                             "geneticRisk", "chronicLungDisease", "balancedDiet", "obesity", "smoking", 
+                             "passiveSmoker", "chestPain", "coughingOfBlood", "fatigue", "weightLoss", 
+                             "shortnessOfBreath", "wheezing", "swallowingDifficulty", "clubbingOfFingerNails", 
+                             "frequentCold", "dryCough", "snoring"],
+                    values: [["p301",age, gender, airPollution, alcoholUse, dustAllergy, occupationalHazards, 
+                              geneticRisk, chronicLungDisease, balancedDiet, obesity, smoking, 
+                              passiveSmoker, chestPain, coughingOfBlood, fatigue, weightLoss, 
+                              shortnessOfBreath, wheezing, swallowingDifficulty, clubbingOfFingerNails, 
+                              frequentCold, dryCough, snoring]]
+                }
+            ]
+        };
+
+        // Call the Express API
+        fetch('https://ml-models-apis.vercel.app/predict-cancer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the result
+            const result = data.predictions[0].values[0][0];
+            if (result === 'High') {
+              document.getElementById('cancerPredictionResult').innerText = 'There is a high likelihood of cancer.';
+            } else if (result === 'Medium') {
+              document.getElementById('cancerPredictionResult').innerText = 'There is a medium likelihood of cancer.';
+            } else if (result === 'Low') {
+              document.getElementById('cancerPredictionResult').innerText = 'There is a low likelihood of cancer.';
+            } else {
+              document.getElementById('cancerPredictionResult').innerText = result;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('cancerPredictionResult').innerText = 'Error in prediction. Please try again.';
         });
     });
 });
 
-function getToken(errorCallback, loadCallback) {
-    const req = new XMLHttpRequest();
-    req.addEventListener("load", loadCallback);
-    req.addEventListener("error", errorCallback);
-    req.open("POST", "https://iam.cloud.ibm.com/identity/token");
-    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    req.setRequestHeader("Accept", "application/json");
-    req.send("grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=gftM94quHbBOHSKb2TJKADQl1h9-p0nqJ4SeMyxHSDxn");
-  }
 
-function apiPost(scoring_url, token, payload, loadCallback, errorCallback) {
-    const oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", loadCallback);
-    oReq.addEventListener("error", errorCallback);
-    oReq.open("POST", scoring_url);
-    oReq.setRequestHeader("Accept", "application/json");
-    oReq.setRequestHeader("Authorization", "Bearer " + token);
-    oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    oReq.send(payload);
-}
+
+
+
     document.getElementById("predictionForm").addEventListener("submit", function(event) {
         event.preventDefault();
         const formData = new FormData(this);
