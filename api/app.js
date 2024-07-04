@@ -1,5 +1,3 @@
-// app.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -64,6 +62,12 @@ app.post('/score', (req, res) => {
     });
 });
 
+// Endpoint to handle home route
+app.get('/', (req, res) => {
+    res.json({ message: 'Hello, World!' });
+});
+
+// Start server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
