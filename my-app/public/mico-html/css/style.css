@@ -668,7 +668,6 @@ a:focus {
 .team_section .heading_container h2 span {
   color: #ffffff;
 }
-
 .team_section .box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -684,12 +683,13 @@ a:focus {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   padding: 0 10px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, transparent), color-stop(10%, #ffffff));
-  background: linear-gradient(to bottom, transparent 10%, #ffffff 10%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%, transparent), color-stop(10%, #ffffff));
+  background: linear-gradient(to bottom, transparent 10%, #bedbdb 10%);
 }
 
+
 .team_section .box .img-box img {
-  width: 100%;
+  width: 50%;
 }
 
 .team_section .box .detail-box {
@@ -717,8 +717,8 @@ a:focus {
 }
 
 .team_section .box .detail-box .social_box a {
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   border-radius: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
