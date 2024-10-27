@@ -1,4 +1,5 @@
 # 🌱 Agrogya Samabadh: Nurturing Health with Predictive Heart Disease Analysis and Doctor-Patient Harmony 🩺
+![napkin-selection (2)](https://github.com/user-attachments/assets/b2f185e5-d850-42ea-82ae-42054a601b87)
 
 #### Author: [Piyush Rai](#)
 ##### Status: **#OPEN_TO_WORK**
